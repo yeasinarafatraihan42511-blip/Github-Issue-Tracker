@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,38 @@
     <!-- DaisyUI-and-css-add-links -->
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
+
 <body>
-    Github-Issue-Tracker
+    <!-- Login-page-design -->
+    <div class="flex items-center justify-center h-screen bg-gray-100 w-full h-[900px] shadow-2xl gap-8px space-x-0 space-y-0">
+        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded shadow x-[540px] y-[78.5px] w-[520px] h-[643px]">
+            <div class="flex flex-col justify-center items-center">
+                <img class="w-[100px] h-[100px] " src="./assets/github-logo.png" alt="">
+                <h3 class="text-2xl font-bold text-center">GitHub Issues <br>Tracker</h3>
+                <p class="text-center text-gray-600">Sign in to manage your issues</p>
+            </div>
+            <div class=" flex flex-col justify-center items-center y-6">
+                <fieldset class="fieldset bg-white border-base-300 rounded-box w-xs border p-2 ">
+                    <legend class="fieldset-legend">Login</legend>
+
+                    <label class="label">Email</label>
+                    <input type="email" class="input" placeholder="Email" />
+
+                    <label class="label">Password</label>
+                    <input type="password" class="input" placeholder="Password" />
+
+                    <button class="btn btn-neutral mt-4">Login</button>
+                </fieldset>
+            </div>
+            <div></div>
+        </div>
+    </div>
+
+
+
 </body>
+
 </html>
