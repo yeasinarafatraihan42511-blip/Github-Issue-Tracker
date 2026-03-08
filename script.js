@@ -1,20 +1,43 @@
+// LOGIN-FORM-SCRIPT
+
 const form = document.getElementById("login-form");
 
-form.addEventListener("submit", function(e) {
+if (form) {
 
-  e.preventDefault();
+  form.addEventListener("submit", function (e) {
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+    e.preventDefault();
 
-  if (username === "admin" && password === "admin123") {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    window.location.href = "main.html";
+    if (username === "admin" && password === "admin123") {
 
-  } else {
+      window.location.href = "main.html";
 
-    alert("Invalid username or password");
+    } else {
 
-  }
+      alert("Invalid username or password");
 
-});
+    }
+
+  });
+
+}
+
+// CARD-SECTION-SCRIPT
+
+
+// const cardContainer = document.getElementById("cards-container");
+
+// async function loadCards() {
+  
+//   // async awite
+//   const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+//   const data = await response.json();
+//   console.log(data);
+//   console.log(cardContainer);
+ 
+ 
+// }
+// loadCards();
