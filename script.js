@@ -25,22 +25,33 @@ if (form) {
 
 }
 
-// CARD-SECTION-SCRIPT
 
 
-// const cardContainer = document.getElementById("cards-container");
 
-// async function loadCards() {
+// TAB-BTN-SECTION
+let currentTab = "all";
+const tabActiveClass = ["btn-primary", "text-white"];
+const tabInactiveClass = ["bg-transparent", "text-black-700"];
+
+function switchTab(tab) {
+  const tabs = ["all", "open", "closed"];
+  for (const t of tabs) {
+    const tabName = document.getElementById("tab-" + t);
+    if (t === tab) {
+      tabName.classList.add(...tabActiveClass);
+      tabName.classList.remove(...tabInactiveClass);
+    } 
+    else {
+      tabName.classList.remove(...tabActiveClass);
+      tabName.classList.add(...tabInactiveClass);
+    }
   
-//   // async awite
-//   const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
-//   const data = await response.json();
-//   console.log(data);
-//   console.log(cardContainer);
- 
- 
-// }
-// loadCards();
+
+}
+  
+}
+  
+
 
 // card-section
 
@@ -54,7 +65,7 @@ async function loadCards() {
 }
 
 function displayCards(cards) {
-  console.log(cards);
+  
   cards.forEach((card) => {
     let borderColor;
 let status;
