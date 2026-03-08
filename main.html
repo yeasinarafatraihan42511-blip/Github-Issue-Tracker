@@ -39,9 +39,9 @@
 
     <!-- TAB-SECTION -->
     <div class="flex  justify-start items-center gap-4 mt-6 mx-46  bg-white p-4 shadow ">
-        <button id="all-btn" class=" px-6 py-2 btn btn-primary">All </button>
-        <button id="open-btn" class=" px-6 py-2 btn">Open </button>
-        <button id="closed-btn" class=" px-6 py-2 btn">Closed</button>
+        <button onclick="switchTab('all')" id="all-btn" class=" px-6 py-2 btn btn-primary">All </button>
+        <button onclick="switchTab('open')" id="open-btn" class=" px-6 py-2 btn">Open </button>
+        <button onclick="switchTab('closed')" id="closed-btn" class=" px-6 py-2 btn">Closed</button>
     </div>
     <!-- TAB'S-BELOW-SECTION -->
     <div class="flex  justify-between items-center gap-4 mt-6 mx-46  bg-white p-4 shadow ">
@@ -67,35 +67,46 @@
     </div>
     <!-- CARD-SECTION -->
     <div id="cards-container"
-        class="mx-46 mt-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  bg-white p-4 shadow space-y-4">
+        class="mx-46 mt-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  bg-white p-4 shadow space-y-4">
         <!-- Cards will be dynamically added here -->
-        <div class="bg-white p-4 shadow w-[256px] h-[253px] border-t-4 border-green-500 rounded">
+        <div class="bg-white p-4 shadow w-[256px] h-[273px] border-t-4 border-green-500 rounded">
             <div class="flex justify-between items-center gap-2">
                 <img src="./assets/Open-Status.png" alt="">
                 <button class="btn btn-active rounded-3xl h-7"> <span
                         class="text-xs text-yellow-600 font-bold">HIGH</span></button>
             </div>
+
             <h1 class="font-bold text-lg mt-2">Fix Navigation Menu on Mobile Devices</h1>
             <p class="text-gray-600 mt-1 line-clamp-2">The navigation menu doesn't collapse properly on mobile
-                devices....</p>
+                devices</p>
+
             <div class="mt-1 justify-between items-center gap-0 flex">
-                <button class="flex items-center gap-2 bg-amber-100 text-white px-4 py-2 rounded">
+                <button
+                    class="flex items-center gap-2 btn btn-active rounded-3xl h-7 text-yellow-700 px-4 py-2 rounded text-xs">
 
-                    <img src="search-icon.png" class="w-4 h-4">
+                    <img src="./assets/BugDroid.png" class="w-4 h-4">
 
-                    Search
-
-                </button>
-                <button class="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded">
-
-                    <img src="search-icon.png" class="w-4 h-4">
-
-                    Search
+                    BUG
 
                 </button>
+
+                <button
+                    class="flex items-center gap-2 btn btn-active bg-amber-100 text-yellow-700 rounded-3xl h-7 px-3 py-2 rounded text-xs">
+
+                    <img src="./assets/Vector.png" class="w-4 h-4">
+
+                    HELP WANTED
+
+                </button>
+
 
 
             </div>
+            <hr class="border-t border-gray-300 my-2">
+            <p class="text-gray-600 line-clamp-2">#1
+                by john_doe</p>
+            <p class="text-gray-600 line-clamp-2">1/15/2024</p>
+
 
         </div>
 
