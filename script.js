@@ -1,7 +1,5 @@
 // LOGIN-FORM-SCRIPT
-
 const form = document.getElementById("login-form");
-
 if (form) {
 
   form.addEventListener("submit", function (e) {
@@ -40,44 +38,57 @@ function switchTab(tab) {
     if (t === tab) {
       tabName.classList.add(...tabActiveClass);
       tabName.classList.remove(...tabInactiveClass);
-    } 
+    }
     else {
       tabName.classList.remove(...tabActiveClass);
       tabName.classList.add(...tabInactiveClass);
     }
-  
 
-}
-  
-}
+
+  }
   
 
 
 // card-section
 
 const cardContainer = document.getElementById("cards-container");
+const loadingSpinner = document.getElementById("loading-spinner");
+function showLoadingSpinner() {
+  loadingSpinner.classList.remove("hidden");
+  cardContainer.innerHTML = ""; // Clear existing cards
+}
+function hideLoadingSpinner() {
+  loadingSpinner.classList.add("hidden");
+}
 
 async function loadCards() {
+  showLoadingSpinner();
+  loadingSpinner.classList.add("flex");
+
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await res.json();
+
+  loadingSpinner.classList.add("hidden");
+  hideLoadingSpinner();
+
   displayCards(data.data);
 
 }
 
 function displayCards(cards) {
-  
+
   cards.forEach((card) => {
     let borderColor;
-let status;
+    let status;
 
-if (card.status === "open") {
-  borderColor = "border-green-500";
-  status = "./assets/Open-Status.png";
-} else {
-  borderColor = "border-blue-500";
-  status = "./assets/Closed-Status.png";
-}
-  
+    if (card.status === "open") {
+      borderColor = "border-green-500";
+      status = "./assets/Open-Status.png";
+    } else {
+      borderColor = "border-blue-500";
+      status = "./assets/Closed-Status.png";
+    }
+
 
     const cardElement = document.createElement("div");
     cardElement.className = "bg-white p-4 shadow w-[256px] h-[273px] border-t-4 " + borderColor + " rounded";
@@ -127,7 +138,7 @@ if (card.status === "open") {
     cardContainer.appendChild(cardElement);
 
 
-    
+
   });
 
 
@@ -135,4 +146,6 @@ if (card.status === "open") {
 
 loadCards();
 
-
+}
+const tabButtons = document.getElementById("tab-all");
+tabButtons.click();
