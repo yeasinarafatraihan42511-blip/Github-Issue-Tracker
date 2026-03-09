@@ -28,6 +28,7 @@ if (form) {
 
 // TAB-BTN-SECTION
 let currentTab = "all";
+let allCards = []; 
 const tabActiveClass = ["btn-primary", "text-white"];
 const tabInactiveClass = ["bg-transparent", "text-black-700"];
 
@@ -46,6 +47,9 @@ function switchTab(tab) {
 
 
   }
+  currentTab = tab;
+  applyFilter();
+}
   
 
 
@@ -71,7 +75,10 @@ async function loadCards() {
   loadingSpinner.classList.add("hidden");
   hideLoadingSpinner();
 
-  displayCards(data.data);
+  // displayCards(data.data);
+  // FOR FILTARING PURPOSES
+  allCards = data.data;
+  applyFilter();
 
 }
 
@@ -146,6 +153,26 @@ function displayCards(cards) {
 
 loadCards();
 
-}
+
 const tabButtons = document.getElementById("tab-all");
 tabButtons.click();
+
+// FOR UPDATE-COUNT PURPOSES
+
+function updateIssueCount(count) {
+  const issueCount =document.getElementById("issue-count");
+  issueCount.textContent = `${count} Issues`;
+}
+// FOR FILTARING PURPOSES
+
+function applyFilter() {
+  let filteredCards = [];
+  if (currentTab === "all") {
+    filteredCards = allCards;
+  } else {
+    filteredCards = allCards.filter(card => card.status === currentTab);
+  }
+  cardContainer.innerHTML = ""; // Clear existing cards
+  displayCards(filteredCards);
+  updateIssueCount(filteredCards.length);
+}
