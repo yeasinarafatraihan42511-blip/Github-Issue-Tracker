@@ -28,7 +28,7 @@ if (form) {
 
 // TAB-BTN-SECTION
 let currentTab = "all";
-let allCards = []; 
+let allCards = [];
 const tabActiveClass = ["btn-primary", "text-white"];
 const tabInactiveClass = ["bg-transparent", "text-black-700"];
 
@@ -50,13 +50,17 @@ function switchTab(tab) {
   currentTab = tab;
   applyFilter();
 }
-  
+
 
 
 // card-section
 
 const cardContainer = document.getElementById("cards-container");
 const loadingSpinner = document.getElementById("loading-spinner");
+// SEARCH-FILD
+
+
+
 function showLoadingSpinner() {
   loadingSpinner.classList.remove("hidden");
   cardContainer.innerHTML = ""; // Clear existing cards
@@ -106,7 +110,7 @@ function displayCards(cards) {
                         class="text-xs text-yellow-600 font-bold">${card.priority}</span></button>
             </div>
 
-            <h1 class="font-bold text-lg mt-2">Fix Navigation Menu on Mobile Devices</h1>
+            <h1 class="font-bold text-lg mt-2">${card.title}</h1>
             <p class="text-gray-600 mt-1 line-clamp-2">${card.description}</p>
 
             <div class="mt-1 justify-between items-center gap-0 flex">
@@ -160,7 +164,7 @@ tabButtons.click();
 // FOR UPDATE-COUNT PURPOSES
 
 function updateIssueCount(count) {
-  const issueCount =document.getElementById("issue-count");
+  const issueCount = document.getElementById("issue-count");
   issueCount.textContent = `${count} Issues`;
 }
 // FOR FILTARING PURPOSES
@@ -176,3 +180,49 @@ function applyFilter() {
   displayCards(filteredCards);
   updateIssueCount(filteredCards.length);
 }
+
+// SEARCH-SECTION
+
+
+const searchBtn = document.getElementById("search-btn");
+const searchInput = document.getElementById("searchInput");
+
+searchBtn.addEventListener("click", async function () {
+
+  const searchText = searchInput.value.trim();
+
+  if (!searchText) {
+    applyFilter();
+    return;
+  }
+
+  showLoadingSpinner();
+
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`
+  );
+
+  const data = await res.json();
+
+  hideLoadingSpinner();
+
+  const searchedCards = data.data;
+
+  cardContainer.innerHTML = "";
+
+  displayCards(searchedCards);
+
+  updateIssueCount(searchedCards.length);
+
+});
+searchInput.addEventListener("keypress", function (e) {
+
+  if (e.key === "Enter") {
+    searchBtn.click();
+  }
+
+});
+
+
+
+
