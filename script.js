@@ -147,6 +147,9 @@ function displayCards(cards) {
     </div>
     `;
     cardContainer.appendChild(cardElement);
+    cardElement.addEventListener("click", function () {
+  openIssueModal(card.id);
+});
 
 
 
@@ -176,7 +179,7 @@ function applyFilter() {
   } else {
     filteredCards = allCards.filter(card => card.status === currentTab);
   }
-  cardContainer.innerHTML = ""; // Clear existing cards
+  cardContainer.innerHTML = ""; 
   displayCards(filteredCards);
   updateIssueCount(filteredCards.length);
 }
@@ -220,6 +223,43 @@ searchInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     searchBtn.click();
   }
+
+});
+
+// MODAL SECTION
+// MODAL SYSTEM
+
+const modal = document.getElementById("issue-modal");
+
+async function openIssueModal(id){
+
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+  );
+
+  const data = await res.json();
+
+  const card = data.data;
+
+  document.getElementById("modal-title").innerText = card.title;
+  document.getElementById("modal-description").innerText = card.description;
+  document.getElementById("modal-author").innerText = card.author;
+  document.getElementById("modal-priority").innerText = card.priority;
+  document.getElementById("modal-status").innerText = card.status;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+
+}
+
+// close modal
+
+document
+.getElementById("close-modal")
+.addEventListener("click", function(){
+
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
 
 });
 
